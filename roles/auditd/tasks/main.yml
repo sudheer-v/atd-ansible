@@ -2,7 +2,7 @@
 
 - name: Install requirements
   ansible.builtin.package:
-    name: bash
+    name: Bash
     state: present
 
 - name: Install audit
