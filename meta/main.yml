@@ -1,7 +1,7 @@
 ---
 galaxy_info:
   author: vsk
-  role: auditd
+  role_name: auditd
   description: role for installing and configuring auditd
   company: xyz
   license: Apache-2.0
