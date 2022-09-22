@@ -1,8 +1,8 @@
 ---
 - name: auditd
   hosts: my-servers
-  become: yes
-  gather_facts: yes
+  become: true
+  gather_facts: true
 
   roles:
     - role: auditd
