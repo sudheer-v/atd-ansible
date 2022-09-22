@@ -4,10 +4,10 @@ galaxy_info:
   description: role for installing and configuring auditd
   company: xyz
   license: Apache-2.0
-  min_ansible_version: 2.5
+  min_ansible_version: "2.5"
   platforms:
     - name: Ubuntu
-      versions: 
+      versions:
         - all
   galaxy_tags:
     - auditd
