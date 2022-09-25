@@ -44,7 +44,7 @@ jobs:
         with:
           path: "${{ github.repository }}"
       - name: Test Ansible roles with Molecule
-        uses: ../action.yaml
+        uses: $PWD
         with:
           image: molecule-image
           tag: ${{ github.sha }}
