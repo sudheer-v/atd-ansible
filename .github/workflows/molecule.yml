@@ -48,7 +48,7 @@ jobs:
       - name: parse apparmor for mysql
         run: sudo apparmor_parser -R /etc/apparmor.d/usr.sbin.mysqld
       - name: molecule
-        uses: local/molecule-image:${{ github.sha }}
+        uses: robertdebock/molecule-action@4.0.8
         with:
           image: local/molecule-image
           tag: ${{ github.sha }}
