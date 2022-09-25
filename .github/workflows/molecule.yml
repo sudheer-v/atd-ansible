@@ -19,9 +19,6 @@ jobs:
         uses: actions/checkout@v3
       - name: ansible-lint
         uses: ansible-community/ansible-lint-action@main
-      - name: Build an image from Dockerfile
-        run: |
-          docker build -t local/molecule-image:${{ github.sha }} .
   test:
     runs-on: ubuntu-20.04
     strategy:
@@ -43,6 +40,9 @@ jobs:
         uses: actions/checkout@v3
         with:
           path: "${{ github.repository }}"
+      - name: Build an image from Dockerfile
+        run: |
+          docker build -t local/molecule-image:${{ github.sha }} .
       - name: Test Ansible roles with Molecule
         uses: sudheer-v/molecule-action@1.0.0 
         with:
