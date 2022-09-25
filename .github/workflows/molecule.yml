@@ -44,7 +44,6 @@ jobs:
         with:
           path: "${{ github.repository }}"
       - name: Test Ansible roles with Molecule
-        description: Run Molecule to test Ansible roles
         run:
           using: docker
           image: "docker://local/molecule:${{ github.sha }}"
