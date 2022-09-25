@@ -38,8 +38,8 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v3
-        with:
-          path: "${{ github.repository }}"
+        #      with:
+        #  path: "${{ github.repository }}"
       - name: Build an image from Dockerfile
         run: |
           docker build -t local/molecule-image:${{ github.sha }} .
