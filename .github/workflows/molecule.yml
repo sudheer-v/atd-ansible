@@ -44,14 +44,7 @@ jobs:
         with:
           path: "${{ github.repository }}"
       - name: Test Ansible roles with Molecule
-        run:
-          using: docker
-          image: "docker://local/molecule:${{ github.sha }}"
-          env:
-            ANSIBLE_ROLES_PATH: "../"
-            ANSIBLE_ASYNC_DIR: "/tmp/.ansible_async"
-            namespace: localhost
-            image: molecule-image
-            tag: ${{ github.sha }}
-            command: test
-            scenario: default
+        uses: ./action.yaml
+        with:
+          image: molecule-image
+          tag: ${{ github.sha }}
