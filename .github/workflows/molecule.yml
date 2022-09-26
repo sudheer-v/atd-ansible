@@ -25,16 +25,10 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          - image: "debian"
-            tag: "latest"
-          - image: "debian"
-            tag: "bookworm"
           - image: "ubuntu"
             tag: "latest"
           - image: "ubuntu"
             tag: "focal"
-          - image: "ubuntu"
-            tag: "bionic"
     steps:
       - name: checkout
         uses: actions/checkout@v3
@@ -42,9 +36,9 @@ jobs:
         #  path: "${{ github.repository }}"
       - name: Build an image from Dockerfile
         run: |
-          docker build -t local/molecule-image:${{ github.sha }} .
+          docker build -t local/molecule-image:1.0.0 .
       - name: Test Ansible roles with Molecule
         uses: sudheer-v/molecule-action@1.0.0 
         with:
-          image: molecule-image
-          tag: ${{ github.sha }}
+          image: ${{ matrix.config.image }}
+          tag: ${{ matrix.config.tag }}
