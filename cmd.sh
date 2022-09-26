@@ -17,6 +17,7 @@ retry() {
 }
 
 # Go into the repository or assume it's here. (`.`)
+pwd
 cd "${GITHUB_REPOSITORY:-.}" || exit
 
 # Test the role.
