@@ -26,5 +26,5 @@ jobs:
       - name: Test Ansible roles with Molecule
         uses: sudheer-v/molecule-action@1.0.0 
         with:
-          image: ${{ matrix.config.image }}
-          tag: ${{ matrix.config.tag }}
+          image: ubuntu
+          tag: latest
