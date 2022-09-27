@@ -4,15 +4,11 @@ dependency:
   options:
     role-file: requirements.yml
     requirements-file: requirements.yml
-lint: |
-  set -e
-  ansible-lint
 driver:
   name: docker
 platforms:
-  - name: "auditd-${image:-fedora}-${tag:-latest}${TOX_ENVNAME}"
-    image: local/${image:-fedora}:${tag:-latest}"
-    command: /sbin/init
+  - name: instance
+    image: ubuntu:focal-20220826
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
     privileged: true
