@@ -20,7 +20,7 @@
     dest: "{{ auditd_config_directory }}/{{ auditd_config_file }}"
     mode: "0640"
   notify:
-    - restart auditd
+    - Restart auditd
 
 - name: Create rules.d directory
   ansible.builtin.file:
