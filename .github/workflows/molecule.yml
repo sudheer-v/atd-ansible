@@ -1,30 +1,26 @@
----
-name: Ansible Molecule
+name: Molecule
+
 on:
   push:
-    tags_ignore:
-      - '*'
+    branches:
+      - master
   pull_request:
+    branches:
+      - master
 
 jobs:
-  test:
-    runs-on: ubuntu-20.04
-    strategy:
-      fail-fast: false
-      matrix:
-        config:
-          - image: "ubuntu"
-            tag: "latest"
-          - image: "ubuntu"
-            tag: "focal"
+  molecule:
+    runs-on: ubuntu-latest
     steps:
-      - name: checkout
-        uses: actions/checkout@v3
-      - name: Build an image from Dockerfile
-        run: |
-          docker build -t local/molecule-image:1.0.0 .
-      - name: Test Ansible roles with Molecule
-        uses: sudheer-v/molecule-action@1.0.0 
+      - name: Checkout
+        uses: actions/checkout@v2
         with:
-          image: ubuntu
-          tag: latest
+          path: "${{ github.repository }}"
+          
+      - name: Molecule
+        uses: gofrolist/molecule-action@v2
+        with:
+          molecule_command: test
+          molecule_args: -d docker
+        env:
+          ANSIBLE_FORCE_COLOR: '1'

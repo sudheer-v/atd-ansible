@@ -10,13 +10,18 @@ lint: |
 driver:
   name: docker
 platforms:
-  - name: "auditd-${image:-fedora}-${tag:-latest}${TOX_ENVNAME}"
-    image: local/${image:-fedora}:${tag:-latest}"
+  - name: instance
+    image: geerlingguy/docker-ubuntu2004-ansible
+    tmpfs:
+      - /run
+      - /tmp
     command: /sbin/init
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
     privileged: true
     pre_build_image: true
+    capabilities:
+      - SYS_ADMIN
 provisioner:
   name: ansible
 verifier:
