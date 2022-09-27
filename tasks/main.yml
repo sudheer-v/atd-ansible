@@ -34,7 +34,7 @@
     dest: "{{ auditd_config_directory }}/rules.d/custom.rules"
     mode: "0664"
   notify:
-    - run augenrules
+    - Run augenrules
   when:
     - auditd_manage_rules
 
