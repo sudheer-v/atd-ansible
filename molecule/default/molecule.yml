@@ -9,7 +9,7 @@ driver:
 platforms:
   - name: instance
     #image: geerlingguy/docker-ubuntu2004-ansible
-    image: ubuntu:focal-20220826
+    image: python:3.9-bullseye
     tmpfs:
       - /run
       - /tmp
