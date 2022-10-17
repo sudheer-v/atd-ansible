@@ -38,6 +38,28 @@
   when:
     - auditd_manage_rules
 
+- name: Place custom.rules.debian
+  copy:
+    src: metal.rules.Debian
+    dest: "{{ auditd_config_directory }}/rules.d/55custom.rules"
+    mode: "0664"
+  notify:
+    - Run augenrules
+  when:
+    - auditd_manage_rules
+    - ansible_facts['os_family'] == 'Ubuntu'
+
+- name: Place custom.rules.ubuntu
+  copy:
+    src: metal.rules.Ubuntu
+    dest: "{{ auditd_config_directory }}/rules.d/99custom.rules"
+    mode: "0664"
+  notify:
+    - Run augenrules
+  when:
+    - auditd_manage_rules
+    - ansible_facts['os_family'] == 'Debian'
+
 - name: Start and enable auditd
   ansible.builtin.service:
     name: "{{ auditd_service }}"
