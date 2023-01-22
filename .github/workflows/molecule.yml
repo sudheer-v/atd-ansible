@@ -32,7 +32,7 @@ jobs:
         run: pip3 install ansible molecule[docker] docker
 
       - name: Run Molecule tests.
-        run: molecule test
+        run: cd sudheer-v/atd-ansible/ && molecule test
         env:
           PY_COLORS: '1'
           ANSIBLE_FORCE_COLOR: '1'
