@@ -1,26 +1,19 @@
 ---
+role_name_check: 1
 dependency:
   name: galaxy
-  options:
-    role-file: requirements.yml
-    requirements-file: requirements.yml
 driver:
   name: docker
 platforms:
   - name: instance
-    image: geerlingguy/docker-ubuntu2004-ansible
-    #image: python:3.9-bullseye
-    tmpfs:
-      - /run
-      - /tmp
-    command: /usr/sbin/init
+    image: "geerlingguy/docker-${MOLECULE_DISTRO:-centos7}-ansible:latest"
+    command: ${MOLECULE_DOCKER_COMMAND:-""}
     volumes:
-      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+      - /sys/fs/cgroup:/sys/fs/cgroup:rw
+    cgroupns_mode: host
     privileged: true
     pre_build_image: true
-    capabilities:
-      - SYS_ADMIN
 provisioner:
   name: ansible
-verifier:
-  name: ansible
+  playbooks:
+    converge: ${MOLECULE_PLAYBOOK:-converge.yml}
